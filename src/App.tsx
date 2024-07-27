@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import twaLogo from './assets/tapps.png';
 import './App.css';
 import WebApp from '@twa-dev/sdk';
