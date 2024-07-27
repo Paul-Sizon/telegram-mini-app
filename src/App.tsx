@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import twaLogo from './assets/tapps.png';
 import './App.css';
-
 import WebApp from '@twa-dev/sdk';
 import { TonConnectButton, useTonAddress, useTonConnectUI, useTonWallet } from '@tonconnect/ui-react';
 
@@ -43,11 +42,11 @@ const Wallet = () => {
 
 // Hardcoded transaction details
 const transaction = {
-  validUntil: 0, // Set a valid expiration timestamp if needed
+  validUntil: 0,
   messages: [
     {
-      address: "0:ea1ca25df01eec5a31bc996d80c7d4a274344eea6b73827844d97266603c9425", // Destination address
-      amount: "10000000" // Amount in nanotons
+      address: "0:ea1ca25df01eec5a31bc996d80c7d4a274344eea6b73827844d97266603c9425",
+      amount: "10000000"
     }
   ]
 };
