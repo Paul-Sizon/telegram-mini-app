@@ -46,7 +46,7 @@ const Wallet = () => {
 
 // Hardcoded transaction details
 const transaction = {
-  validUntil: 0,
+  validUntil: Math.floor(new Date().getTime() / 1000) + 360,
   messages: [
     {
       address: "0:ea1ca25df01eec5a31bc996d80c7d4a274344eea6b73827844d97266603c9425",
