@@ -1,6 +1,6 @@
 import logo from './assets/logo_juro.png';
 import './App.css';
-import { TonConnectButton, useTonAddress, useTonConnectUI, useTonWallet } from '@tonconnect/ui-react';
+import { TonConnectButton, useTonConnectUI, useTonWallet } from '@tonconnect/ui-react';
 
 // Header Component with TonConnectButton
 const Header = () => (
@@ -15,20 +15,20 @@ const formatAddress = (address: string): string => {
 };
 
 // Display connected user's address
-const Address = () => {
-  const userFriendlyAddress = useTonAddress();
-  const rawAddress = useTonAddress(false);
+// const Address = () => {
+//   const userFriendlyAddress = useTonAddress();
+//   const rawAddress = useTonAddress(false);
   
 
-  return (
-    userFriendlyAddress && (
-      <div>
-        <p>User-friendly address: {formatAddress(userFriendlyAddress)}</p>
-        <p>Raw address: {formatAddress(rawAddress)}</p>
-      </div>
-    )
-  );
-};
+//   return (
+//     userFriendlyAddress && (
+//       <div>
+//         <p>User-friendly address: {formatAddress(userFriendlyAddress)}</p>
+//         <p>Raw address: {formatAddress(rawAddress)}</p>
+//       </div>
+//     )
+//   );
+// };
 
 
 // Display connected wallet details
