@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import twaLogo from './assets/tapps.png';
+import logo from './assets/logo_juro.png';
 import './App.css';
 import WebApp from '@twa-dev/sdk';
 import { TonConnectButton, useTonAddress, useTonConnectUI, useTonWallet } from '@tonconnect/ui-react';
@@ -10,29 +12,35 @@ const Header = () => (
   </header>
 );
 
+const formatAddress = (address: string): string => {
+    if (address.length <= 6) return address;
+    return `${address.slice(0, 6)}...${address.slice(-4)}`;
+};
+
 // Display connected user's address
 const Address = () => {
   const userFriendlyAddress = useTonAddress();
   const rawAddress = useTonAddress(false);
+  
 
   return (
     userFriendlyAddress && (
       <div>
-        <p>User-friendly address: {userFriendlyAddress}</p>
-        <p>Raw address: {rawAddress}</p>
+        <p>User-friendly address: {formatAddress(userFriendlyAddress)}</p>
+        <p>Raw address: {formatAddress(rawAddress)}</p>
       </div>
     )
   );
 };
 
+
 // Display connected wallet details
 const Wallet = () => {
   const wallet = useTonWallet();
-
   return (
     wallet && (
       <div>
-        <p>Connected wallet: {wallet.account.address}</p>
+        <p>Connected wallet: {formatAddress(wallet.account.address)}</p>
         <p>Device: {wallet.device.appName}</p>
       </div>
     )
@@ -53,35 +61,33 @@ const transaction = {
 // Button to send transaction using TonConnect
 const SendTransactionButton = () => {
   const [tonConnectUI] = useTonConnectUI();
-
+  const wallet = useTonWallet();
   return (
+    wallet && (
     <button onClick={() => tonConnectUI.sendTransaction(transaction)}>
-      Pay
+      Send 0.01 Ton
     </button>
+    )
   );
 };
 
 // Main App component
 function App() {
   return (
-    <>
+    <div id="root" className="center-content">
       <div>
-        <a href="https://ton.org/dev" target="_blank" rel="noopener noreferrer">
-          <img src={twaLogo} className="logo" alt="TWA logo" />
+        <a target="_blank" rel="noopener noreferrer">
+          <img src={logo} className="logo" alt="TWA logo" />
         </a>
       </div>
       <Header />
-      <Address />
+      {/* <Address /> */}
       <Wallet />
-      <div className="card">
-        <SendTransactionButton />
-      </div>
-      <div className="card">
-        <button onClick={() => WebApp.showAlert(`Hello World!`)}>
-          Show Alert
-        </button>
-      </div>
-    </>
+      <SendTransactionButton />
+      {/* <button onClick={() => WebApp.showAlert(`Hello World!`)}>
+        Show Alert
+      </button> */}
+    </div>
   );
 }
 
