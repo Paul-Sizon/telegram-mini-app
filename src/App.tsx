@@ -1,8 +1,5 @@
-import { useState } from 'react';
-import twaLogo from './assets/tapps.png';
 import logo from './assets/logo_juro.png';
 import './App.css';
-import WebApp from '@twa-dev/sdk';
 import { TonConnectButton, useTonAddress, useTonConnectUI, useTonWallet } from '@tonconnect/ui-react';
 
 // Header Component with TonConnectButton
