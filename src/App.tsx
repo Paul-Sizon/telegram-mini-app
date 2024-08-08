@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState } from 'react';
 import { TonConnectButton, useTonConnectUI, useTonWallet } from '@tonconnect/ui-react';
 import logo from './assets/logo_juro.png';
 import './App.css';
+import { useState } from 'react';
 
 // Header Component with TonConnectButton
 const Header = () => (
@@ -12,7 +12,7 @@ const Header = () => (
   </header>
 );
 
-const formatAddress = (address) => {
+const formatAddress = (address: string) => {
   if (address.length <= 6) return address;
   return `${address.slice(0, 6)}...${address.slice(-4)}`;
 };
@@ -30,7 +30,7 @@ const Wallet = () => {
   );
 };
 
-const SendTransactionButton = ({ amount }) => {
+const SendTransactionButton = ({ amount }: { amount: number }) => {
   const [tonConnectUI] = useTonConnectUI();
   const wallet = useTonWallet();
   const transaction = {
