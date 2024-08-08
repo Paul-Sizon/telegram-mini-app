@@ -1,91 +1,62 @@
-import logo from './assets/logo_juro.png';
+"use client";
+
+import React, { useState } from 'react';
+import { useTonConnectUI, useTonWallet } from '@tonconnect/ui-react';
+// import logo from './assets/logo_juro.png';
 import './App.css';
-import { TonConnectButton, useTonConnectUI, useTonWallet } from '@tonconnect/ui-react';
 
-// Header Component with TonConnectButton
-const Header = () => (
-  <header>
-    <TonConnectButton />
-  </header>
-);
-
-const formatAddress = (address: string): string => {
-    if (address.length <= 6) return address;
-    return `${address.slice(0, 6)}...${address.slice(-4)}`;
-};
-
-// Display connected user's address
-// const Address = () => {
-//   const userFriendlyAddress = useTonAddress();
-//   const rawAddress = useTonAddress(false);
-  
-
-//   return (
-//     userFriendlyAddress && (
-//       <div>
-//         <p>User-friendly address: {formatAddress(userFriendlyAddress)}</p>
-//         <p>Raw address: {formatAddress(rawAddress)}</p>
-//       </div>
-//     )
-//   );
-// };
-
-
-// Display connected wallet details
-const Wallet = () => {
-  const wallet = useTonWallet();
-  return (
-    wallet && (
-      <div>
-        <p>Connected wallet: {formatAddress(wallet.account.address)}</p>
-        <p>Device: {wallet.device.appName}</p>
-      </div>
-    )
-  );
-};
-
-// Hardcoded transaction details
-const transaction = {
-  validUntil: Math.floor(new Date().getTime() / 1000) + 6000,
-  messages: [
-    {
-      address: "0:ea1ca25df01eec5a31bc996d80c7d4a274344eea6b73827844d97266603c9425",
-      amount: "10000000"
-    }
-  ]
-};
-
-// Button to send transaction using TonConnect
-const SendTransactionButton = () => {
+const SendTransactionButton = ({ amount }: { amount: number }) => {
   const [tonConnectUI] = useTonConnectUI();
   const wallet = useTonWallet();
+  const transaction = {
+    validUntil: Math.floor(new Date().getTime() / 1000) + 6000,
+    messages: [
+      {
+        address: "0:ea1ca25df01eec5a31bc996d80c7d4a274344eea6b73827844d97266603c9425",
+        amount: (amount * 1e9).toString(), // Convert TON to nanoton
+      }
+    ]
+  };
+
   return (
     wallet && (
-    <button onClick={() => tonConnectUI.sendTransaction(transaction)}>
-      Send 0.01 Ton
-    </button>
+      <button onClick={() => tonConnectUI.sendTransaction(transaction)} className="send-button">
+        Send
+      </button>
     )
   );
 };
 
-// Main App component
-function App() {
+const App = () => {
+  const [amount, setAmount] = useState(0.01);
+
   return (
-    <div id="root" className="center-content">
-      <div>
-        <a target="_blank" rel="noopener noreferrer">
-          <img src={logo} className="logo" alt="TWA logo" />
-        </a>
+    <div id="root" className="center-content">    
+      <div className="content-container">
+        <div className="avatar-container">
+          <div className="avatar">
+            <img src="https://iili.io/da8Ant9.webp" alt="Avatar" />
+          </div>
+        </div>
+        <div className="info-container">
+          <p>@Pablo_Kagathos: blockchain developer</p>
+        </div>
+        <div className="button-group">
+          <button onClick={() => setAmount(0.01)} className="btn">0.01 TON</button>
+          <button onClick={() => setAmount(0.02)} className="btn">0.02 TON</button>
+          <input
+            type="number"
+            step="0.01"
+            value={amount}
+            onChange={(e) => setAmount(parseFloat(e.target.value))}
+            placeholder="Custom amount"
+            className="input"
+          />
+        </div>
+        <SendTransactionButton amount={amount} />
       </div>
-      <Header />
-      {/* <Address /> */}
-      <Wallet />
-      <SendTransactionButton />
-      {/* <button onClick={() => WebApp.showAlert(`Hello World!`)}>
-        Show Alert
-      </button> */}
     </div>
   );
-}
+};
 
 export default App;
