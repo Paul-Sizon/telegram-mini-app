@@ -11,23 +11,22 @@ const Header = () => (
   </header>
 );
 
-const formatAddress = (address: string) => {
-  if (address.length <= 6) return address;
-  return `${address.slice(0, 6)}...${address.slice(-4)}`;
-};
+// const formatAddress = (address: string) => {
+//   if (address.length <= 6) return address;
+//   return `${address.slice(0, 6)}...${address.slice(-4)}`;
+// };
 
-// Display connected wallet details
-const Wallet = () => {
-  const wallet = useTonWallet();
-  return (
-    wallet && (
-      <div>
-        <p>Connected wallet: {formatAddress(wallet.account.address)}</p>
-        <p>Device: {wallet.device.appName}</p>
-      </div>
-    )
-  );
-};
+// const Wallet = () => {
+//   const wallet = useTonWallet();
+//   return (
+//     wallet && (
+//       <div>
+//         <p>Connected wallet: {formatAddress(wallet.account.address)}</p>
+//         <p>Device: {wallet.device.appName}</p>
+//       </div>
+//     )
+//   );
+// };
 
 const SendTransactionButton = ({ amount }: { amount: number }) => {
   const [tonConnectUI] = useTonConnectUI();
