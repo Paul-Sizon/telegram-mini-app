@@ -65,7 +65,7 @@ const App = () => {
         </div>
         <p>@Pablo_Kagathos: blockchain developer</p>
       </div>
-      <Wallet />
+      {/* <Wallet /> */}
       <div className="button-group">
         <button onClick={() => setAmount(0.01)} className="btn">0.01 TON</button>
         <button onClick={() => setAmount(0.02)} className="btn">0.02 TON</button>
