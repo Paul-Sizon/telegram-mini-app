@@ -62,7 +62,17 @@ const App = () => {
         <div className="avatar">
           <img src="https://iili.io/da8Ant9.webp" alt="Avatar" />
         </div>
+        <div className="social-links">
+          <a href="https://github.com/PabloKagathos" target="_blank" rel="noopener noreferrer" className="github-link">
+            <i className="fab fa-github"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/PabloKagathos" target="_blank" rel="noopener noreferrer" className="linkedin-link">
+            <i className="fab fa-linkedin"></i>
+          </a>
+        </div>
         <p>@Pablo_Kagathos: blockchain developer</p>
+        
+
       </div>
       {/* <Wallet /> */}
       <div className="button-group">
