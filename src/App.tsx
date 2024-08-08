@@ -1,7 +1,6 @@
 "use client";
 
 import { TonConnectButton, useTonConnectUI, useTonWallet } from '@tonconnect/ui-react';
-import logo from './assets/logo_juro.png';
 import './App.css';
 import { useState } from 'react';
 
@@ -57,13 +56,12 @@ const App = () => {
 
   return (
     <div id="root" className="center-content">
-      <div>
-        <img src={logo} className="logo" alt="TWA logo" />
+      <div className="header-container">
+        <Header />
       </div>
-      <Header />
       <div className="avatar-container">
         <div className="avatar">
-          <img src="https://via.placeholder.com/150" alt="Avatar" />
+          <img src="https://iili.io/da8Ant9.webp" alt="Avatar" />
         </div>
         <p>@Pablo_Kagathos: blockchain developer</p>
       </div>

@@ -33,6 +33,9 @@
 header {
   margin-bottom: 1rem;
 }
+.header-container {
+  margin-bottom: 2rem; /* Adjust the value as needed */
+}
 
 /* Button styling */
 button {
