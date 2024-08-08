@@ -32,7 +32,7 @@ const SendTransactionButton = ({ amount }: { amount: number }) => {
   const [tonConnectUI] = useTonConnectUI();
   const wallet = useTonWallet();
   const transaction = {
-    validUntil: Math.floor(new Date().getTime() / 1000) + 6000,
+    validUntil: Math.floor(new Date().getTime() / 1100) + 6000,
     messages: [
       {
         address: "0:ea1ca25df01eec5a31bc996d80c7d4a274344eea6b73827844d97266603c9425",
